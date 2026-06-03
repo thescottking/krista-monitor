@@ -1,0 +1,14 @@
+{
+  "_comment": "Search terms for the Krista X monitor. Quoted strings = exact phrase matches. Edit freely — the script reads search_terms verbatim.",
+  "search_terms": [
+    "\"enterprise brain\"",
+    "\"digital brain\"",
+    "\"cognitive enterprise\"",
+    "\"AI context\"",
+    "\"agentic AI\" enterprise",
+    "\"AI agents\" enterprise",
+    "\"agent orchestration\"",
+    "\"AI orchestration\" enterprise",
+    "\"enterprise AI platform\""
+  ]
+}
