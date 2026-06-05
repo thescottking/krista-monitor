@@ -98,6 +98,7 @@ SCORING RUBRIC (0–100):
 RULES:
 - Skip retweets and quote-tweets of older content.
 - Skip pure ads / unrelated self-promotion.
+- Skip posts from accounts with 300 or fewer followers. Check the author's follower count and include it as "follower_count".
 - If the author is a known Krista competitor (see list above), set "is_competitor": true and still include the post (the team wants competitive intel).
 - "angle" must be ONE sentence with Krista's concrete reply angle — not generic ("we should engage"), but specific ("contrast Krista's reasoning loop with their pipeline metaphor").
 
@@ -108,6 +109,7 @@ Shape:
     {
       "handle": "string (no @)",
       "author_bio": "string",
+      "follower_count": 1234,
       "post_url": "https://x.com/...",
       "posted_at": "ISO 8601 string or empty",
       "text": "post text, trimmed",
@@ -211,10 +213,11 @@ async function searchKeyword(keyword, attempt = 1) {
     return [];
   }
   const posts = parsed.posts
-    .filter((p) => p && p.post_url && p.text)
+    .filter((p) => p && p.post_url && p.text && !(Number.isFinite(+p.follower_count) && +p.follower_count <= 300))
     .map((p) => ({
       handle: String(p.handle || '').replace(/^@/, ''),
       author_bio: String(p.author_bio || ''),
+      follower_count: Number.isFinite(+p.follower_count) ? +p.follower_count : null,
       post_url: String(p.post_url),
       posted_at: String(p.posted_at || ''),
       text: String(p.text).trim(),
@@ -249,7 +252,7 @@ function renderPost(p) {
   const posted = p.posted_at ? p.posted_at : 'unknown';
   const quoted = p.text.replace(/\n/g, '\n> ');
   return [
-    `### @${p.handle} — score ${p.score}${tag}`,
+    `### @${p.handle} — score ${p.score}${tag}${p.follower_count ? ` — ${p.follower_count.toLocaleString()} followers` : ''}`,
     '',
     `${bio}Keyword: \`${p.keyword}\`  |  Posted: ${posted}`,
     '',
