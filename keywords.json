@@ -9,6 +9,18 @@
     "\"AI agents\" enterprise",
     "\"agent orchestration\"",
     "\"AI orchestration\" enterprise",
-    "\"enterprise AI platform\""
+    "\"enterprise AI platform\"",
+    "\"LLM gateway\"",
+    "\"LLM routing\"",
+    "\"model routing\"",
+    "\"shadow AI\"",
+    "\"LLM cost\" enterprise",
+    "\"AI governance\" LLM",
+    "\"MCP server\" enterprise",
+    "\"Model Context Protocol\"",
+    "\"shadow MCP\"",
+    "\"tool poisoning\"",
+    "\"tokenmaxxing\"",
+    "\"MCP gateway\""
   ]
 }
